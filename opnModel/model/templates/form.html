@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Data input Form</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <p align="center">Financial status evaluation form</p>
+    </head>
+
+    <body>
+        <form action="/form/" method="post">
+            {% csrf_token %}
+            <ol>
+                <li>{{form.companyName.label}}<br/>{{form.companyName}}</li>
+                <li>{{form.annualRevenue.label}}<br/>{{form.annualRevenue}}</li>
+                <li>{{form.yoyGrowth.label}}<br/>{{form.yoyGrowth}}</li>
+                <li>{{form.capitalSeeking.label}}<br/>{{form.capitalSeeking}}</li>
+                <li>{{form.monthlyBurn.label}}<br/>{{form.monthlyBurn}}</li>
+                <li>{{form.investmentPeriod.label}}<br/>{{form.investmentPeriod}}</li>
+                <li>{{form.industryMultiplier.label}}<br/>{{form.industryMultiplier}}</li>
+                <li>{{form.outstandingShares.label}}<br/>{{form.outstandingShares}}</li>
+            </ol>
+            <input type="submit" value="Submit" />
+        </form>
+    </body>
+
+</html>

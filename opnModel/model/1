@@ -1,0 +1,53 @@
+from django.db import models
+import math
+
+# Create your models here.
+
+#Declare global variables
+annualRevenue = 100000 # Anual revenue of company
+revenueGrowthYoY = 0.29
+capitalSeeking = 500000
+MonthlyBurn = 40000
+term = 5
+peRatio = 20
+sharesOutstanding = 100000
+
+#derivatives
+netIncomeAtExitYear = (annualRevenue * (1 + revenueGrowthYoY)**term)
+companyValueAtExit = annualRevenue * capitalSeeking
+
+#Capital Rounds
+friendsAndFamily = 50000
+seedRound = 250000
+investmentRoundSeriesA = 500000
+investmentRoundSeriesB = 750000
+investmentRoundSeriesC = 1000000
+
+#adjusted Rate Calulation
+requiredRevenueGrowthRateForProfitability = ((MonthlyBurn * 12) - annualRevenue) / annualRevenue
+requiredTermForProfitabilityAtCurentRate = math.log((MonthlyBurn * 12) / annualRevenue)/(math.log(1 + revenueGrowthYoY))
+
+#Projected metrics
+def revenueGrowth():
+    currentRevenue = annualRevenue
+    for i in range(term):
+        print("Revenue Year ",i,": ",currentRevenue)
+        currentRevenue = currentRevenue * (1 + revenueGrowthYoY)
+
+
+
+
+
+#Confidence Level
+def confidenceLevel():
+    confidenceLevel = (1 - (term/10))/3+(revenueGrowthYoY/0.5)/3 + (1-(capitalSeeking/500000))/4
+    print("Confidence level: ",confidenceLevel)
+
+
+revenueGrowth()
+confidenceLevel()
+
+
+
+
+

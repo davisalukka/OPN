@@ -52,14 +52,13 @@ def signupform(request):
 
             requiredrateforprofitability = requiredRateForProfitability(monthlyBurn, annualRevenue)
 
-            #requiredtermforprofitability = requiredTermForProfitabilty(monthlyBurn, annualRevenue, yoyGrowth)
+            requiredtermforprofitabilty = requiredTermForProfitabilty(monthlyBurn, annualRevenue, yoyGrowth)
 
+            revenuegrowth = revenueGrowth(annualRevenue, investmentPeriod)
 
-            #revenuegrowth = revenueGrowth(annualRevenue, investmentPeriod, yoyGrowth)
+            projectedsurplus = projectedSurplus(annualRevenue, monthlyBurn, investmentPeriod)
 
-            #projectedsurplus = projectedSurplus(annualRevenue, monthlyBurn, investmentPeriod)
-
-            #confidencelevel = confidenceLevel(investmentPeriod, yoyGrowth, capitalSeeking, annualRevenue)
+            confidencelevel = confidenceLevel(investmentPeriod, yoyGrowth, capitalSeeking, annualRevenue)
 
             return render(request, 'result.html',{
                 'companyName': companyName,
@@ -78,14 +77,14 @@ def signupform(request):
                 'futureValue': futurevalue,
                 'requiredOwnership': requiredownership,
                 'outstandingSharesPost': outstandingsharespost,
-                'postMoneyValuation': postmoneyvaluation,
-                'preMoneyValuation': premoneyvaluation,
+                'postMoneyValuation': postMoneyvaluation,
+                'preMoneyValuation': preMoneyvaluation,
                 'sharePrice': shareprice,
                 'requiredRateForProfitability': requiredrateforprofitability,
-                #'requiredTermForProfitabilty': requiredtermforprofitabilty,
-                #'revenueGrowth': revenuegrowth,
-                #'projectedSurplus': projectedsurplus,
-                #'confidenceLevel': confidencelevel,
+                'requiredTermForProfitabilty': requiredtermforprofitabilty,
+                'revenueGrowth': revenuegrowth,
+                'projectedSurplus': projectedsurplus,
+                'confidenceLevel': confidencelevel,
                 })
 
     else:

@@ -1,7 +1,6 @@
 from django.db import models
 import math
 from .forms import SignupForm
-from decimal import Decimal
 
 # Create your models here.
 #Declare global variables
@@ -31,7 +30,7 @@ def outstandingSharesPost(outstandingShares, futureValue, companyValueAtExit):
     return (outstandingShares/(1 - requiredOwnerShip))
 
 def postMoneyValuation(companyValueAtExit, yoyGrowth, investmentPeriod):
-    return (companyValueAtExit  /  float(((1+yoyGrowth**(investmentPeriod)))))
+    float(companyValueAtExit)/float(((1+yoyGrowth**(investmentPeriod))))
 
 def preMoneyValuation(postMoneyValuation, capitalSeeking): 
     return (postMoneyValuation - capitalSeeking)
@@ -41,20 +40,19 @@ def sharePrice(postMoneyValuation, outstandingSharesPost):
 
 #adjusted Rate Calulation
 def requiredRateForProfitability(monthlyBurn, annualRevenue):
-    return (((monthlyBurn * 12) - annualRevenue) / annualRevenue)
+    return (((MonthlyBurn * 12) - annualRevenue) / annualRevenue)
 
 def requiredTermForProfitability(monthlyBurn, annualRevenue, yoyGrowth):
     return (math.log((MonthlyBurn * 12) / annualRevenue)/(math.log(1 + revenueGrowthYoY)))
-"""
-#Projected metrics
-def revenueGrowth(annualRevenue, investmentPeriod, yoyGrowth):
-    currentRevenue = annualRevenue
-    Growth = []
-    for i in range(investmentPeriod):
-        Growth.append(currentRevenue)
-        currentRevenue = (currentRevenue * float((1 + yoyGrowth))
 
-    return Growth
+#Projected metrics
+def revenueGrowth(annualRevenue, investmentPeriod):
+    currentRevenue = annualRevenue
+    revenueGrowth = []
+    for i in range(investmentPeriod):
+        revenueGrowth.append(currentRevenue)
+        currentRevenue = currentRevenue * (1 + revenueGrowthYoY)
+    return revenueGrowth
 
 def projectedSurplus(annualRevenue, monthlyBurn, investmentPeriod):
     currentRevenue = annualRevenue
@@ -66,9 +64,7 @@ def projectedSurplus(annualRevenue, monthlyBurn, investmentPeriod):
         surplusRevenue = currentRevenue - (MonthlyBurn * 12)
     return revenueGrowth
 
+
 #Confidence Level
 def confidenceLevel(investmentPeriod, yoyGrowth, capitalSeeking, annualRevenue):
-    return ((1 - (investmentPeriod/10))/3+(yoyGrowth/0.5)/3 + (1-(capitalSeeking/annualRevenue))/3)
-
-"""
-
+    return ((1 - (term/10))/3+(revenueGrowthYoY/0.5)/3 + (1-(capitalSeeking/annualRevenue))/3)

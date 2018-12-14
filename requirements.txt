@@ -1,0 +1,4 @@
+Required Features for 5/12:
+
+1. Charts
+2. Growth Rate
