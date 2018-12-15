@@ -1,4 +1,4 @@
-Required Features for 5/12:
-
-1. Charts
-2. Growth Rate
+Django==2.1.3
+jedi==0.13.1
+parso==0.3.1
+pytz==2018.7
