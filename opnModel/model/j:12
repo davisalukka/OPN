@@ -3,17 +3,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}OPN Investors Valuation Model{% endblock %}</title>
+        <title>OPN Investors Valuation Model</title>
     </head>
     <body>
-        <main>
-        {% block content %}
         <h1>OPN investors portal</h1>
     <ul>
         <li><a href="/about/">About Us</a></li>
-        <li><a href="/signup/">Go to Sign up page</a></li>
+        <li><a href="/signup/">Go to signup page</a></li>
     </ul>
-    {% endblock %}
-        </main>
     </body>
 </html>
