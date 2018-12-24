@@ -21,6 +21,27 @@ def update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
         instance.profile.save()
 
+class valuationMetrics(models.Model):
+
+    #Company name. 
+    companyName = models.CharField(max_length=100)
+    #Annual revenue
+    annualRevenue = models.FloatField()
+    #Year on year growth rate
+    yoyGrowth =  models.DecimalField(max_digits=5,decimal_places=3)
+    #Amount of capital being requested
+    capitalSeeking =  models.IntegerField()
+    #Monthly capital expense
+    monthlyBurn = models.IntegerField()
+    #Investment term length
+    investmentPeriod = models.IntegerField()
+    #Standard industry multipliers
+    standardMultipliers = ((1,5),(2,10),(3,15),(4,20),(5,25))
+    industryMultiplier = models.IntegerField(choices=standardMultipliers)
+    #Outstanding shares before investment
+    outstandingShares = models.IntegerField()
+
+#Model values calculations
 
 #derivatives
 def netIncomeAtExit(annualRevenue, yoyGrowth, investmentPeriod):
@@ -29,7 +50,6 @@ def netIncomeAtExit(annualRevenue, yoyGrowth, investmentPeriod):
 def companyValueAtExit(netIncomeAtExit, industryMultiplier):
     return(netIncomeAtExit * industryMultiplier)
 
-
 #Capital Rounds
 
 def futureValue(capitalSeeking, yoyGrowth, investmentPeriod):
@@ -37,8 +57,6 @@ def futureValue(capitalSeeking, yoyGrowth, investmentPeriod):
 
 def requiredOwnership(futureValue, companyValueAtExit):
     return (float(futureValue)/float(companyValueAtExit))
-
-    #outstandingSharesPre = outStandingShares
 
 def outstandingSharesPost(outstandingShares, futureValue, companyValueAtExit):
     requiredOwnerShip = requiredOwnership(futureValue, companyValueAtExit)
