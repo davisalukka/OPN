@@ -1,8 +1,10 @@
 #importing forms
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 #creating our forms
-class SignupForm(forms.Form):
+class evaluationForm(forms.Form):
     #Company name. 
     companyName = forms.CharField(label="Company name", max_length=100)
     #Annual revenue
@@ -20,5 +22,16 @@ class SignupForm(forms.Form):
     industryMultiplier = forms.ChoiceField(label="P/E Ratio",choices=standardMultipliers)   
     #Outstanding shares before investment
     outstandingShares = forms.IntegerField(label="Outstanding shares")
+
+class SignUpForm(UserCreationForm):
+    username=forms.CharField(max_length=100, required=False, help_text = 'Optional.')
+    first_name = forms.CharField(max_length=100, required=False, help_text = 'Optional.')
+    last_name = forms.CharField(max_length=100, required=False, help_text='Optional.')
+    company_name = forms.CharField(max_length=100, required=False, help_text='Required.')
+    email=forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.')
+
+    class Meta:
+        model=User
+        fields=('username', 'first_name', 'last_name','company_name', 'email', 'password1', 'password2',)
 
 

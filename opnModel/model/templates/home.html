@@ -1,0 +1,19 @@
+<! -- templates/home.html -->
+
+{% extends 'index.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<p align="center">OPN Investor portal</p>
+{% if user.is_authenticated %}
+<ul>
+    <li><a href="/about/">About Us</a></li>
+    <li><a href="{% url 'form' %}"<h2>Goto evaluation form.</h2></a></li>
+</ul>
+<p align="left"><a href="{% url 'logout' %}"<p align="right">Logout</p></a></p>
+{% else %}
+<p align="center">You are not logged in.</p>
+<p>Please click <a href="accounts/login/">here</a> to login.</p>
+{% endif %}
+{% endblock %}
