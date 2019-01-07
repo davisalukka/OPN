@@ -11,6 +11,7 @@ from django.template.loader import render_to_string
 from django.contrib.auth.forms import UserCreationForm
 from .forms import evaluationForm
 from .forms import SignUpForm
+from .forms import valuationMetricsForm
 from .models import *
 
 # Create your views here.
@@ -32,8 +33,8 @@ def evaluationform(request):
     #if form is submitted
     if request.method == 'POST':
         #will handle the request later
-        form = evaluationForm(request.POST)
-        
+        form = valuationMetricsForm(request.POST) #evaluationForm(request.POST)
+
         if form.is_valid():
             companyName = form.cleaned_data['companyName']
             annualRevenue = form.cleaned_data['annualRevenue']
@@ -43,6 +44,7 @@ def evaluationform(request):
             investmentPeriod = form.cleaned_data['investmentPeriod']
             industryMultiplier = form.cleaned_data['industryMultiplier']
             outstandingShares = form.cleaned_data['outstandingShares']
+
             netincomeatexit =  netIncomeAtExit(float(annualRevenue), float(yoyGrowth), float(investmentPeriod))
             companyvalueatexit = companyValueAtExit(float(netincomeatexit), float(industryMultiplier))
             futurevalue = futureValue(capitalSeeking, yoyGrowth, investmentPeriod)
@@ -66,6 +68,7 @@ def evaluationform(request):
                 'investmentPeriod': investmentPeriod,
                 'industryMultiplier': industryMultiplier,
                 'outstandingShares': outstandingShares,
+
                 #including evlauated metrics from models.py
                 'netIncomeAtExit': netincomeatexit,
                 'companyValueAtExit': companyvalueatexit,
@@ -84,7 +87,7 @@ def evaluationform(request):
 
     else:
         #creating a new form
-        form = evaluationForm()
+        form = valuationMetricsForm #evaluationForm()
         
     #returning form
     return render(request, 'form.html', {'form':form});
