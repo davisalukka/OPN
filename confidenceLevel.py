@@ -37,6 +37,11 @@ for j in range(1, len(cur.description)):
 		current_month = row[j]
 
 print("Annual earnings: "+str(total_earnings))
+
+peratio = 20
+valuation = total_earnings * peratio
+
+print("Current valuation based on P/E and earnings: "+str(valuation))
 confidence = (confidence / float(12)) * 100
 print("confidence: "+str(confidence))
 
