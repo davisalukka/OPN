@@ -36,6 +36,9 @@ def evaluationform(request):
         form = valuationMetricsForm(request.POST) #evaluationForm(request.POST)
 
         if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
             companyName = form.cleaned_data['companyName']
             annualRevenue = form.cleaned_data['annualRevenue']
             yoyGrowth = form.cleaned_data['yoyGrowth'] / 100

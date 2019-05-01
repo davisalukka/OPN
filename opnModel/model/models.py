@@ -40,6 +40,9 @@ class valuationMetrics(models.Model):
     industryMultiplier = models.IntegerField(choices=standardMultipliers)
     #Outstanding shares before investment
     outstandingShares = models.IntegerField()
+    #User
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    date = models.DateTimeField(auto_now=True)
 
 #Model values calculations
 
