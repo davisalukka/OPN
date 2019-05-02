@@ -13,7 +13,7 @@ from django import forms
 from .forms import SignUpForm
 from .forms import valuationMetricsForm
 from .models import *
-
+import model
 # Create your views here.
 
 class HomePageView(TemplateView):
@@ -32,16 +32,16 @@ def evaluationFormView(request):
 	if  request.method == 'POST':
 			form = valuationMetricsForm(request.POST)
 			if(form.is_valid()):
-				print("hello form")
 				valuationMetrics = form.save(commit = False)
 				valuationMetrics.user = request.user
 				valuationMetrics.save()
-				return redirect('about')
+				return redirect('form')
 			
 	form = valuationMetricsForm()
+	metrics = model.models.valuationMetrics.objects.get(user=request.user)#.last()
 	
 	context = {
-		'form': form
+		'form': form, 'metrics': metrics
 	}
 
 	return render(request, "evaluation_form.html", context)

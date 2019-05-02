@@ -41,7 +41,7 @@ class valuationMetrics(models.Model):
     #Outstanding shares before investment
     outstandingShares = models.IntegerField()
     #User
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,primary_key=True)
     date = models.DateTimeField(auto_now=True)
 
 #Model values calculations

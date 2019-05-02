@@ -9,6 +9,15 @@
 <input type="submit" value="Save"/>
 
 </form>
+<p>Company name:             {{metrics.companyName}}
+<br/>Annual revenue:         {{metrics.annualRevenue}}
+<br/>Yoy growth rate:        {{metrics.yoyGrowth}}
+<br/>Capital seeking:        {{metrics.capitalSeeking}}
+<br/>Monthly burn:           {{metrics.monthlyBurn}}
+<br/>Investment term length: {{metrics.investmentPeriod}}
+<br/>Outstanding Shares:     {{metrics.outstandingShares}}
+<br/>Date last updated:      {{metrics.date}}
+</p>
 
 
 {% if user.is_authenticated %}
