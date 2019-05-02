@@ -5,30 +5,11 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from .models import valuationMetrics
 
-#creating our forms
-class evaluationForm(forms.Form): #instead of forms.Form
-    #Company name. 
-    companyName = forms.CharField(label="Company name", max_length=100)
-    #Annual revenue
-    annualRevenue = forms.FloatField(label="Annual revenue")
-    #Year on year growth rate
-    yoyGrowth = forms.DecimalField(label="Yoy growth in decimal")
-    #Amount of capital being requested
-    capitalSeeking = forms.IntegerField(label="Capital being requested")
-    #Monthly capital expense
-    monthlyBurn = forms.IntegerField(label="Monthly burn")
-    #Investment term length
-    investmentPeriod = forms.IntegerField(label="Investment term length")
-    #Standard industry multipliers
-    standardMultipliers = ((1,5),(2,10),(3,15),(4,20),(5,25))
-    industryMultiplier = forms.ChoiceField(label="P/E Ratio",choices=standardMultipliers)   
-    #Outstanding shares before investment
-    outstandingShares = forms.IntegerField(label="Outstanding shares")
-
+#Evaluation form
 class valuationMetricsForm(forms.ModelForm):
     class Meta:
         model = valuationMetrics
-        exclude = []
+        fields = ['companyName','annualRevenue','yoyGrowth','capitalSeeking','monthlyBurn','investmentPeriod','industryMultiplier','outstandingShares']
         labels = {
                 'companyName': 'Company Name',
                 'annualRevenue': 'Annual Revenue',

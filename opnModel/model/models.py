@@ -26,7 +26,7 @@ class valuationMetrics(models.Model):
     #Company name. 
     companyName = models.CharField(max_length=100)
     #Annual revenue
-    annualRevenue = models.FloatField()
+    annualRevenue = models.IntegerField()
     #Year on year growth rate
     yoyGrowth =  models.DecimalField(max_digits=5,decimal_places=3)
     #Amount of capital being requested
@@ -41,7 +41,7 @@ class valuationMetrics(models.Model):
     #Outstanding shares before investment
     outstandingShares = models.IntegerField()
     #User
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
 
 #Model values calculations

@@ -9,7 +9,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
 #from model.tokens import account_activation_token
 from django.contrib.auth.forms import UserCreationForm
-from .forms import evaluationForm
+from django import forms
 from .forms import SignUpForm
 from .forms import valuationMetricsForm
 from .models import *
@@ -28,72 +28,27 @@ class AboutPageView(TemplateView):
 class FormPageView(TemplateView):
     template_name = "form.html"
 
-#Add this view
-def evaluationform(request):
-    #if form is submitted
-    if request.method == 'POST':
-        #will handle the request later
-        form = valuationMetricsForm(request.POST) #evaluationForm(request.POST)
+def evaluationFormView(request):
+	if  request.method == 'POST':
+			form = valuationMetricsForm(request.POST)
+			if(form.is_valid()):
+				print("hello form")
+				valuationMetrics = form.save(commit = False)
+				valuationMetrics.user = request.user
+				valuationMetrics.save()
+				return redirect('about')
+			
+	form = valuationMetricsForm()
+	
+	context = {
+		'form': form
+	}
 
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-            companyName = form.cleaned_data['companyName']
-            annualRevenue = form.cleaned_data['annualRevenue']
-            yoyGrowth = form.cleaned_data['yoyGrowth'] / 100
-            capitalSeeking = form.cleaned_data['capitalSeeking']
-            monthlyBurn = form.cleaned_data['monthlyBurn']
-            investmentPeriod = form.cleaned_data['investmentPeriod']
-            industryMultiplier = form.cleaned_data['industryMultiplier']
-            outstandingShares = form.cleaned_data['outstandingShares']
+	return render(request, "evaluation_form.html", context)
 
-            netincomeatexit =  netIncomeAtExit(float(annualRevenue), float(yoyGrowth), float(investmentPeriod))
-            companyvalueatexit = companyValueAtExit(float(netincomeatexit), float(industryMultiplier))
-            futurevalue = futureValue(capitalSeeking, yoyGrowth, investmentPeriod)
-            requiredownership = requiredOwnership(futurevalue, companyvalueatexit)
-            outstandingsharespost = outstandingSharesPost(outstandingShares, futurevalue, companyvalueatexit)
-            postmoneyvaluation = postMoneyValuation(companyvalueatexit, yoyGrowth, investmentPeriod)
-            premoneyvaluation = preMoneyValuation(postmoneyvaluation, capitalSeeking)
-            shareprice = sharePrice(postmoneyvaluation, capitalSeeking)
-            requiredrateforprofitability = requiredRateForProfitability(monthlyBurn, annualRevenue)
-            #requiredtermforprofitability = requiredTermForProfitabilty(monthlyBurn, annualRevenue, yoyGrowth)
-            #revenuegrowth = revenueGrowth(annualRevenue, investmentPeriod, yoyGrowth)
-            #projectedsurplus = projectedSurplus(annualRevenue, monthlyBurn, investmentPeriod)
-            #confidencelevel = confidenceLevel(investmentPeriod, yoyGrowth, capitalSeeking, annualRevenue)
 
-            return render(request, 'result.html',{
-                'companyName': companyName,
-                'annualRevenue': annualRevenue,
-                'yoyGrowth': yoyGrowth,
-                'capitalSeeking': capitalSeeking,
-                'monthlyBurn': monthlyBurn,
-                'investmentPeriod': investmentPeriod,
-                'industryMultiplier': industryMultiplier,
-                'outstandingShares': outstandingShares,
+	
 
-                #including evlauated metrics from models.py
-                'netIncomeAtExit': netincomeatexit,
-                'companyValueAtExit': companyvalueatexit,
-                'futureValue': futurevalue,
-                'requiredOwnership': requiredownership,
-                'outstandingSharesPost': outstandingsharespost,
-                'postMoneyValuation': postmoneyvaluation,
-                'preMoneyValuation': premoneyvaluation,
-                'sharePrice': shareprice,
-                'requiredRateForProfitability': requiredrateforprofitability,
-                #'requiredTermForProfitabilty': requiredtermforprofitabilty,
-                #'revenueGrowth': revenuegrowth,
-                #'projectedSurplus': projectedsurplus,
-                #'confidenceLevel': confidencelevel,
-                })
-
-    else:
-        #creating a new form
-        form = valuationMetricsForm #evaluationForm()
-        
-    #returning form
-    return render(request, 'form.html', {'form':form});
 
 def signup(request):
     if request.method=='POST':

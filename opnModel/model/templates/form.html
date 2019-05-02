@@ -21,7 +21,7 @@
     <body>
         <form action="/form/" method="post">
             {% csrf_token %}
-            <ol>
+            <ol class="errorlist">
                 <li>{{form.companyName.label}}<br/>{{form.companyName}}</li>
                 <li>{{form.annualRevenue.label}}<br/>{{form.annualRevenue}}</li>
                 <li>{{form.yoyGrowth.label}}<br/>{{form.yoyGrowth}}</li>
