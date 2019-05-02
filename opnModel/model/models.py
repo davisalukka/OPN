@@ -23,6 +23,8 @@ def update_user_profile(sender, instance, created, **kwargs):
 
 class valuationMetrics(models.Model):
 
+     
+    user = models.ForeignKey(User, on_delete=models.CASCADE,primary_key=True)
     #Company name. 
     companyName = models.CharField(max_length=100)
     #Annual revenue
@@ -41,7 +43,6 @@ class valuationMetrics(models.Model):
     #Outstanding shares before investment
     outstandingShares = models.IntegerField()
     #User
-    user = models.ForeignKey(User, on_delete=models.CASCADE,primary_key=True)
     date = models.DateTimeField(auto_now=True)
 
 #Model values calculations

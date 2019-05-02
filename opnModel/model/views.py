@@ -35,14 +35,16 @@ def evaluationFormView(request):
 				valuationMetrics = form.save(commit = False)
 				valuationMetrics.user = request.user
 				valuationMetrics.save()
-				return redirect('form')
+				metrics = model.models.valuationMetrics.objects.get(user=request.user)
+				context = {'form': form, 'metrics': metrics }
+				return render(request, "evaluation_form.html", context)
 			
 	form = valuationMetricsForm()
-	metrics = model.models.valuationMetrics.objects.get(user=request.user)#.last()
-	
-	context = {
-		'form': form, 'metrics': metrics
-	}
+	try:
+		metrics = model.models.valuationMetrics.objects.get(user=request.user)
+		context = {'form': form, 'metrics': metrics }
+	except:
+		context = {'form': form	}
 
 	return render(request, "evaluation_form.html", context)
 

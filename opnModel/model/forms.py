@@ -7,7 +7,11 @@ from .models import valuationMetrics
 
 #Evaluation form
 class valuationMetricsForm(forms.ModelForm):
+
     class Meta:
+
+	
+	
         model = valuationMetrics
         fields = ['companyName','annualRevenue','yoyGrowth','capitalSeeking','monthlyBurn','investmentPeriod','industryMultiplier','outstandingShares']
         labels = {
@@ -30,7 +34,7 @@ class valuationMetricsForm(forms.ModelForm):
     
 
 class SignUpForm(UserCreationForm):
-    username=forms.CharField(max_length=100, required=False, help_text = 'Optional.')
+    username=forms.CharField(max_length=100, required=False, help_text = 'Required.')
     first_name = forms.CharField(max_length=100, required=False, help_text = 'Optional.')
     last_name = forms.CharField(max_length=100, required=False, help_text='Optional.')
     company_name = forms.CharField(max_length=100, required=False, help_text='Required.')
