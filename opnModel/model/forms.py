@@ -13,7 +13,7 @@ class valuationMetricsForm(forms.ModelForm):
 	
 	
         model = valuationMetrics
-        fields = ['companyName','annualRevenue','yoyGrowth','capitalSeeking','monthlyBurn','investmentPeriod','industryMultiplier','outstandingShares']
+        fields = ['companyName','annualRevenue','yoyGrowth','capitalSeeking','monthlyBurn','investmentPeriod','industryMultiplier','outstandingShares','industryVertical']
         labels = {
                 'companyName': 'Company Name',
                 'annualRevenue': 'Annual Revenue',
@@ -23,6 +23,7 @@ class valuationMetricsForm(forms.ModelForm):
                 'investmentPeriod': 'Investment term length: ',
                 'industryMultiplier': 'Standard Industry Multiplier:',
                 'outstandingShares': 'Outstanding Shares: ',
+                'industryVertical': 'Industry Vertical',
                 }
         standardMultipliers = ((1,5),(2,10),(3,15),(4,20),(5,25))
         input_type = {

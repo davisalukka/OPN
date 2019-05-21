@@ -1,14 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#wrapper {
+width: 100%;
+display: table;
+}
+
+#table-cell{
+display: table-row;
+    height: 100%
+}
+
+#inputform{
+    width: 25%;
+display: table-cell;
+
+}
+#first {
+    width: 35%;
+display: table-cell;
+}
+
+#second {
+    width: 40%;
+    display: table-cell;
+}
+
+</style>
+</head>
+<body>
 {% extends 'base.html' %}
 {% block content %}
 
-<p align="center">Financial status evaluation form</p>
+<h1 align="center">Financial status evaluation form</h1>
 
-<form method="post" action="{% url 'form' %}">
+
+<div id="wrapper">
+<div id="table-cell">
+
+<form method="post" action="{% url 'form' %}" id="inputform">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Save"/>
 
 </form>
+
+
+
+<div id="fisrt">
 <p>Company name:             {{metrics.companyName}}
 <br/>Annual revenue:         {{metrics.annualRevenue}}
 <br/>Yoy growth rate:        {{metrics.yoyGrowth}}
@@ -16,13 +57,45 @@
 <br/>Monthly burn:           {{metrics.monthlyBurn}}
 <br/>Investment term length: {{metrics.investmentPeriod}}
 <br/>Outstanding Shares:     {{metrics.outstandingShares}}
+<!-- <br/>Standard industry multiplier: {{metrics.industryMultiplier}} --> 
+<br/>Industry Vertical:      {{metrics.industryVertical}}
 <br/>Date last updated:      {{metrics.date}}
+<h4>Derived values</h4>
+<br/>Net income at exit:     {{metrics.netIncomeAtExit}}
+<br/>Company value at exit: {{metrics.companyValueAtExit}}
+<br/>Future value: {{metrics.futureValue}}
+<br/>Requried ownership share: {{metrics.requiredOwnership}}
+<br/>Outstanding shares post: {{metrics.outstandingSharesPost}}
+<br/>Post money valuation: {{metrics.postMoneyValuation}}
+<br/>Pre money valuation: {{metrics.preMoneyValuation}}
+<br/>Share price: {{metrics.sharePrice }}
+<br/>Required rate for profitablity: {{metrics.requiredRateForProfitability}}
+<br/>Required term for profitablity: {{metrics.requiredTermForProfitability}}
+<h4>Analysis</h4>
+<br/>Projected revenue growth through term length: {{metrics.revenueGrowth}}
+<br/>Projected Surplus: {{metrics.projectedSurplus}}
+<h3>Confidence:</h3>
+<br/>Confidence level: {{metrics.confidenceLevel}}
 </p>
+</div>
 
+<div id="second">
+    <h2>News Feed</h2>
+    <ul>
+        {% for entry in metrics.feeds %}
+        <li><a href="{{entry.link}}">{{entry.title}}</a></li>
+        
+        {% endfor %}
+    </ul>
+</div>
+
+</div>
+</div>
 
 {% if user.is_authenticated %}
 <p align="left"><a href="/accounts/logout">Logout</a></p>
 {% endif %}
 {% endblock %}
-
+</body>
+</html>
 

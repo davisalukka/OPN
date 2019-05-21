@@ -14,6 +14,8 @@ from .forms import SignUpForm
 from .forms import valuationMetricsForm
 from .models import *
 import model
+import feedparser
+
 # Create your views here.
 
 class HomePageView(TemplateView):
@@ -29,24 +31,33 @@ class FormPageView(TemplateView):
     template_name = "form.html"
 
 def evaluationFormView(request):
-	if  request.method == 'POST':
-			form = valuationMetricsForm(request.POST)
-			if(form.is_valid()):
-				valuationMetrics = form.save(commit = False)
-				valuationMetrics.user = request.user
-				valuationMetrics.save()
-				metrics = model.models.valuationMetrics.objects.get(user=request.user)
-				context = {'form': form, 'metrics': metrics }
-				return render(request, "evaluation_form.html", context)
-			
-	form = valuationMetricsForm()
-	try:
-		metrics = model.models.valuationMetrics.objects.get(user=request.user)
-		context = {'form': form, 'metrics': metrics }
-	except:
-		context = {'form': form	}
 
-	return render(request, "evaluation_form.html", context)
+   #News Feed 
+
+    if  request.method == 'POST':
+        form = valuationMetricsForm(request.POST)
+        if(form.is_valid()):
+            #industryNews = form.cleaned_data['industryVertical']
+            #industryNews = industryNews.replace(' ','+')
+            valuationMetrics = form.save(commit = False)
+            valuationMetrics.user = request.user
+            valuationMetrics.save()
+            metrics = model.models.valuationMetrics.objects.get(user=request.user)
+            #feeds = feedparser.parse('https://news.google.ca/news/feeds?pz=1&cf=all&ned=en&hl=ca&q='+industryNews+'&output=rss') 
+            context = {'form': form, 'metrics': metrics }#, 'feeds': feeds}
+            return render(request, "evaluation_form.html", context)
+        
+    form = valuationMetricsForm()
+    try:
+        metrics = model.models.valuationMetrics.objects.get(user=request.user)
+        #industryNews = metrics.industryVertical
+        #industryNews = industryNews.replace(' ','+')
+        #feeds = feedparser.parse('https://news.google.ca/news/feeds?pz=1&cf=all&ned=en&hl=ca&q='+industryNews+'&output=rss') 
+        context = {'form': form, 'metrics': metrics }#, 'feeds': feeds}
+    except Exception as e:
+        context = {'form': form	}
+            
+    return render(request, "evaluation_form.html", context)
 
 
 	

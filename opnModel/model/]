@@ -1,0 +1,6 @@
+import feedparser
+feeds = feedparser.parse('https://news.google.ca/news/feeds?pz=1&cf=all&ned=en&hl=ca&q='+industryNews+'&output=rss') 
+
+for i in range(10):
+    print(feeds[i])
+
