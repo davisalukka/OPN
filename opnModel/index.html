@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>opnfrontend</title>
+  </head>
+  <body>
+      <p>Hello world!</p>
+      {% load render_bundle from webpack_loader %}
+
+    <div id="app">
+        <app> </app>
+    </div>
+    
+    {% render_bundle 'main' %}
+
+    <!--    script src="/dist/build.js"></script> -->
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "dulcet-asset-256521",
+  "private_key_id": "a596a986eb9894a2285356cccfd3731b55efe7c4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQChIsMV6o/dX9HL\ndTy3P+DOQYHFaAlF+koZnhzHA0o1AcxL0a709KS1+0a3TN/Q7nRlhBxGzjVyF9E5\nmKlBU2KRirz/RXKmlA1wPf9AMFFFYfnKHe5wdnIMmvO3SZCWCkoR1iPPqSAsYLn7\n5X8IhyOePA+lRxluYMW7IjI+nDL+8V1w6vTCpRinjMrMpf5t892iqNxIwgHaaOmY\nlVgBW6BcsibQsb/kAZV96ipecXDyNFWOl7nZ+5nRFYuNJWmv0lrJzI1ObFdpYtKG\nnHtugDn7RfjjCidrJYGOZ2dDYSe1ig/2c46cPKY77nZbkwT//vhqQD56ljYG/yLd\nakD+IZb7AgMBAAECggEAGJWkLCDYiE8JRECD3fWaB/4InaTM3WddjOEJxPdkiAfZ\nMqwwRGFbDATleiv5bfgjvCVW5xqpHtoxatc246ekP05qnYvr/SxTjI949UMp8ysK\noGLGsVPw/Klbi9hmfe3d9TC10AYeyYaMebk/E38C2S6SuIXLhIKxSGbkQZc1VJ4i\nx+OfuEe3p0IJvKNT2VBMQ3Wfy5ui/xo4Ga9qzsxC64e4NJlClJm9ODj7R7/geFYU\nkWagOuvES/pC27TaoIjnzvIElRIxfSu89Pugldh3HslE9Sxuzhoz162O/1Nu+fhI\n/4CK/V3F/itIpV47b7Lg89jGEj/y6sgHu3G3pgWtyQKBgQDNMOaSmP4R71u3gTJK\n8q6oloL4UXDjLFUXnrYAZKahPZ2Sz+w2aXpdsT99/9jP+LI+YA54pNGGJybq7bVL\nixpNuxU7peUvlYkHWT0ucSv+t+rDzjSmIlxfLLw/ZyNXyHfTByOAexHzckuuMmWJ\nq9arHRAz45gwrkC7+PR83IUbXwKBgQDJCTER5rDIU6H7mFW1Qd2avz2kpR8gz8pc\nfQVmjvt2R/OIMSyVLryG8B7/nD4/A4fATMsdK74hfufSRFn2hrzN5lhlkyfSqgKm\n7mAAyMQDXcSlLwPy1/R7GPJxCQ99S9hghx8+fsAN9bdljHeu18WqCoAAEQoGMs1X\nNiVy0wDF5QKBgHxA7n87ki8+KOYYoGHuT4HbkvfYKWoHwIeLHl9ik9z0OOVcb4gL\nm4P8/5vHQH2/9f/7nwfDlvWL4+9DfxN96rHDZno2XXDRNqdyjLAA7ElVCh8EUbGB\nATrJFj22sRpJVPY/TmpRHG+1eMrFzeLuYhJAiT1CxzhDbQPnH/Y0e441AoGBAMM0\nXaVYL0gVjS/T10VNU3SzRZPdkcA2g/QSoW/YXmuXqe0Qco3Y986+0hq5B+f/8YzU\nBFWq5892fns5S3GJm0MC68qVfRGdaz3UMPwR9eKe5hbO9DKVZxswOhlwBs5PGyd/\njOMOCEaF1TKRlpT7hz95OpjV8rnaEnEgbnR0VkfRAoGBAMYJU1iK+fZZMEQ192/7\n1WaXEcWmxBhoIWCSuzoQsw0bwpslXvxBKKP0BWRL5+afJCPhfDKgL1YFdjbPear7\np6/7dlwLbpMZVYckSbysjst730gnX3ywkdBmGtUW0qce5wAhntWydzrFP06QI3kj\nhvvtrkQEWlXixs5KtgYjBaQX\n-----END PRIVATE KEY-----\n",
+  "client_email": "opn-dashboard-access@dulcet-asset-256521.iam.gserviceaccount.com",
+  "client_id": "103954094328307322529",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/opn-dashboard-access%40dulcet-asset-256521.iam.gserviceaccount.com"
+}

@@ -17,9 +17,9 @@ import model
 import feedparser
 
 # Create your views here.
-
 class HomePageView(TemplateView):
     template_name = "index.html"
+    
 
 
 #Add this view
@@ -29,6 +29,9 @@ class AboutPageView(TemplateView):
 #Add this view
 class FormPageView(TemplateView):
     template_name = "form.html"
+
+class dashBoardView(TemplateView):
+    template_name = "dashboard.html"
 
 def evaluationFormView(request):
 

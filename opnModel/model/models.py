@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import decimal
 import feedparser
+from simple_history.models import HistoricalRecords
 
 # Create your models here.
 #Declare global variables
@@ -51,6 +52,8 @@ class valuationMetrics(models.Model):
     industryVertical = models.CharField(max_length=150, default="")
     #User
     date = models.DateTimeField(auto_now=True)
+    #History
+    history = HistoricalRecords()
     
     @property
     def netIncomeAtExit(self):

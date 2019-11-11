@@ -1,0 +1,65 @@
+ body {
+     font-family: 'Poppins', sans-serif;
+ }
+ .wrapper {
+     width: 600px;
+     margin: 80px auto 0;
+ }
+ .opn-logo {
+     text-align: center;
+ }
+ h1 {
+     color: #000102;
+     font-size: 32px;
+     font-weight: 300;
+     line-height: 56px;
+     text-align: center;
+     text-transform: uppercase;
+ }
+ .textfield {
+     width: 60%;
+     font-size: 14px;
+     height: 40px;
+     border: 1px solid #eaeaea;
+     padding: 0 5px 0 10px;
+     margin: 0 auto 20px;
+     display: block;
+ }
+ .box {
+     width: 100%;
+     text-align: center;
+     margin: 15px 0;
+ }
+ .not-register {
+     font-size: 14px;
+     line-height: 30px;
+     color: #25aae1;
+     padding: 10px;
+     text-decoration: underline;
+ }
+ .not-register:hover {
+     color: #25aae1;
+ }
+ .register-btn {
+     font-size: 18px;
+     background: #f59331;
+     color: #fff;
+     padding: 10px 0;
+     border: none;
+     width: 63%;
+     margin: 0 auto;
+     display: block;
+ }
+ /* ==== MEDIA QUERIES ==== */
+ @media screen and (max-width: 768px) {
+     .wrapper {
+         width: 90%;
+         padding: 0 5%;
+     }
+     .textfield {
+         width: 80%;
+     }
+     .register-btn {
+         width: 84%;
+     }
+ }

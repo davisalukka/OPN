@@ -25,10 +25,12 @@ SECRET_KEY = '9%!#5y+y6pjlm!w0=e@i%=dh4k+m_fjcop29b!z6_fscaybud2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['64.191.45.142']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','64.191.45.142','investors.opn.ninja']
 
 
 # Application definition
+
+CORS_ORIGIN_ALLOW_ALL=True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,12 +39,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', #Added for registration
     'accounts.apps.AccountsConfig',
     'sslserver',
-    'model'
+    'model',
+    'webpack_loader', #added after vue integration
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'allauth', #Added for registration
+    'allauth.account', #Added for registration
+    'rest_auth.registration', #Added for registration
+    'corsheaders', #Cors config
+    'simple_history',#simple history module
 ]
 
+#Added for registration
+SITE_ID = 1
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', #Added for cors config
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'opnModel.urls'
@@ -57,7 +74,7 @@ ROOT_URLCONF = 'opnModel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,3 +142,19 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+REST_FRAMEWORK = {
+            'DEFAULT_PERMISSION_CLASSES': (
+                        'rest_framework.permissions.IsAuthenticated',
+                            ),
+                'DEFAULT_AUTHENTICATION_CLASSES': (
+                        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+                        'rest_framework.authentication.SessionAuthentication',
+                        'rest_framework.authentication.BasicAuthentication',
+                                                ),
+                }
+
+REST_USE_JWT = True
+
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+

@@ -1,0 +1,113 @@
+<template>
+ <div>
+     <div class="wrapper">
+        <div class="opn-logo">
+            <a href="#"><img src="images/opn.png" alt="OPN" /></a>
+        </div>
+    <h1>Log in</h1>
+    <!-- Form -->
+    <form class="login" @submit.prevent="login">
+        <!-- <h1>Sign in</h1> -->
+        <label>Username</label>
+        <input required v-model="username" type="username" name="textfield username" class="textfield" placeholder="Name"/>
+        <label>Password</label>
+        <input required v-model="password" type="password" name="textfield password" class="textfield" placeholder="Password"/>
+        <hr/>
+        <button type="submit" class="register-btn">Login</button>
+        <div class="box">
+            Not register? <a class="not-register" name="not-register" href="register.html">Create an account</a>
+        </div>
+    </form>
+     </div>
+ </div>
+</template>
+<style>
+
+ body {
+     font-family: 'Poppins', sans-serif;
+ }
+ .wrapper {
+     width: 600px;
+     margin: 80px auto 0;
+ }
+ .opn-logo {
+     text-align: center;
+ }
+ h1 {
+     color: #000102;
+     font-size: 32px;
+     font-weight: 300;
+     line-height: 56px;
+     text-align: center;
+     text-transform: uppercase;
+ }
+ .textfield {
+     width: 60%;
+     font-size: 14px;
+     height: 40px;
+     border: 1px solid #eaeaea;
+     padding: 0 5px 0 10px;
+     margin: 0 auto 20px;
+     display: block;
+ }
+ .box {
+     width: 100%;
+     text-align: center;
+     margin: 15px 0;
+ }
+ .not-register {
+     font-size: 14px;
+     line-height: 30px;
+     color: #25aae1;
+     padding: 10px;
+     text-decoration: underline;
+ }
+ .not-register:hover {
+     color: #25aae1;
+ }
+ .register-btn {
+     font-size: 18px;
+     background: #f59331;
+     color: #fff;
+     padding: 10px 0;
+     border: none;
+     width: 63%;
+     margin: 0 auto;
+     display: block;
+ }
+ /* ==== MEDIA QUERIES ==== */
+ @media screen and (max-width: 768px) {
+     .wrapper {
+         width: 90%;
+         padding: 0 5%;
+     }
+     .textfield {
+         width: 80%;
+     }
+     .register-btn {
+         width: 84%;
+     }
+ }
+
+</style>
+
+<script>
+    export default {
+        data() {
+            return {
+                "username": "",
+                "email": "", 
+                "password": ""
+            }
+        },
+        methods: {
+            login: function() {
+                let username = this.username
+                let password = this.password
+                this.$store.dispatch('login', {username, password })
+                .then(() => this.$router.push('/dashboard'))
+                .catch(err => console.log(err))
+            }
+        }
+    }
+</script>
